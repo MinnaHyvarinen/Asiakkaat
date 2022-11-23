@@ -1,26 +1,44 @@
-@charset "UTF-8";
+@charset "ISO-8859-1";
 
-
-table, th, td {
-    border: 1px solid;
-    border-collapse: collapse;
-    border-color: white;
+table {
+  font-family: sans-serif;
+  border-collapse: collapse;  
+  width: 50%;
 }
 
-th {
-	font-family: sans-serif;
-	background-color: mediumseagreen;
-	text-align: left;
-    color: white;
-    padding: 20px;
-	
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;  
 }
 
-td {
-	height: 30px;
-    font-family: sans-serif;
-    text-align: left;
-    padding: 10px;
-   
+table tbody tr:nth-child(even){background-color: gainsboro;}
+
+table tbody tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: mediumseagreen;
+  color: white;
 }
-tr:nth-child(even) {background-color: gainsboro;}
+
+.poista{
+	color: red;
+	text-decoration: underline;
+	cursor: pointer;	
+}
+
+.oikealle{
+	text-align: right;
+}
+
+#uusiAsiakas, #takaisin{
+	color: white;	
+	cursor: pointer;	
+}
+
+#linkki{
+	color: white;	
+	text-decoration: none;
+}
