@@ -1,3 +1,4 @@
+<%@include file="header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <meta charset="UTF-8">
 <script src="scripts/main.js"></script>
 <script src="scripts/io.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <title>Asiakkaan lisääminen</title>
 </head>
 <body onload="asetaFocus('etunimi')" onkeydown="tutkiKey(event, 'lisaa')">

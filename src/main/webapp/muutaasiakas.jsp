@@ -1,3 +1,4 @@
+<%@include file="header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <script src="scripts/main.js"></script>
 <script src="scripts/io.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <title>Asiakastietojen muuttaminen</title>
 </head>
 <body onload="asetaFocus('etunimi')" onkeydown="tutkiKey(event, 'paivita')">
@@ -31,7 +32,7 @@
 				<td><input type="text" name="sukunimi" id="sukunimi" /></td>
 				<td><input type="text" name="puhelin" id="puhelin" /></td>
 				<td><input type="text" name="sposti" id="sposti" /></td> 
-					<td><input type="button" id="tallenna" value="Hyväksy"
+					<td><input type="button" value="Hyväksy"
 						onclick="tutkiJaPaivita()"></td>
 				</tr>
 			</tbody>

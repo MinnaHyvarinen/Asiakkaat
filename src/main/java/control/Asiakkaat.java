@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -26,6 +27,10 @@ public class Asiakkaat extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Asiakkaat.doGet()");
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("kayttaja")==null){
+			return;
+		}
 		String hakusana = request.getParameter("hakusana");
 		String id = request.getParameter("id");
 		Dao dao = new Dao();
@@ -41,6 +46,9 @@ public class Asiakkaat extends HttpServlet {
 		}else if(id!=null) {
 			Asiakas asiakas = dao.getItem(Integer.parseInt(id));
 			strJSON = new Gson().toJson(asiakas);
+		} else {
+			asiakkaat = dao.getAllItems();
+			strJSON = new Gson().toJson(asiakkaat);
 		}
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -50,6 +58,10 @@ public class Asiakkaat extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Autot.doPost()");
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("kayttaja")==null){
+			return;
+		}
 		String strJSONInput = request.getReader().lines().collect(Collectors.joining());
 		Asiakas asiakas = new Gson().fromJson(strJSONInput, Asiakas.class);	
 		Dao dao = new Dao();
@@ -63,7 +75,11 @@ public class Asiakkaat extends HttpServlet {
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Asiakkaat.doPut()");	
+		System.out.println("Asiakkaat.doPut()");
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("kayttaja")==null){
+			return;
+		}
 		String strJSONInput = request.getReader().lines().collect(Collectors.joining());
 		//System.out.println("strJSONInput " + strJSONInput);		
 		Asiakas asiakas = new Gson().fromJson(strJSONInput, Asiakas.class);			
@@ -80,6 +96,10 @@ public class Asiakkaat extends HttpServlet {
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Asiakkaat.doDelete()");
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("kayttaja")==null){
+			return;
+		}
 		int asiakas_id = Integer.parseInt(request.getParameter("asiakas_id"));
 		Dao dao = new Dao();
 		response.setContentType("application/json; charset=UTF-8");
@@ -90,5 +110,6 @@ public class Asiakkaat extends HttpServlet {
 			out.println("{\"response\":0}");  //Asiakkaan poistaminen epäonnistui {"response":0}
 		}
 	}
+
 
 }
